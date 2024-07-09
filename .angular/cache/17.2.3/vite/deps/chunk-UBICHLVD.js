@@ -30,6 +30,8 @@ import {
   TemplateRef,
   Version,
   ViewContainerRef,
+  __spreadProps,
+  __spreadValues,
   booleanAttribute,
   createNgModule,
   findLocaleData,
@@ -55,11 +57,7 @@ import {
   ɵɵinject,
   ɵɵinjectAttribute,
   ɵɵstyleProp
-} from "./chunk-3AYKZYXE.js";
-import {
-  __spreadProps,
-  __spreadValues
-} from "./chunk-5JEZL4LT.js";
+} from "./chunk-XGIH7YBD.js";
 
 // node_modules/@angular/common/fesm2022/common.mjs
 var _DOM = null;
@@ -4780,16 +4778,10 @@ export {
   setRootDomAdapter,
   DomAdapter,
   DOCUMENT,
-  LOCATION_INITIALIZED,
-  LocationStrategy,
-  PathLocationStrategy,
-  HashLocationStrategy,
-  Location,
   parseCookieValue,
   CommonModule,
   PLATFORM_BROWSER_ID,
   isPlatformServer,
-  ViewportScroller,
   XhrFactory
 };
 /*! Bundled license information:
@@ -4801,4 +4793,4 @@ export {
    * License: MIT
    *)
 */
-//# sourceMappingURL=chunk-CQOI6NPD.js.map
+//# sourceMappingURL=chunk-UBICHLVD.js.map

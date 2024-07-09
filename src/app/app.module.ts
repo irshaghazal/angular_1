@@ -9,13 +9,12 @@ import { CrudComponent } from './crud/crud.component';
 @NgModule({
   declarations: [
     AppComponent,
-    // CrudComponent
+    CrudComponent
     
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    CrudComponent
     
   ],
   bootstrap: [
