@@ -4,21 +4,19 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { TopBarComponent } from './top-bar/top-bar.component';
-import { ProductListComponent } from './product-list/product-list.component';
+import { CrudComponent } from './crud/crud.component';
 
 @NgModule({
+  declarations: [
+    AppComponent,
+    // CrudComponent
+    
+  ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([
-      { path: '', component: ProductListComponent },
-    ])
-  ],
-  declarations: [
-    AppComponent,
-    TopBarComponent,
-    ProductListComponent
+    CrudComponent
+    
   ],
   bootstrap: [
     AppComponent
