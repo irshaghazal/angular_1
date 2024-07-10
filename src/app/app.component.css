@@ -1,5 +1,10 @@
+body{
+    background-color: aqua;
+}
 
-
+p {
+    color: rgb(28, 119, 131);
+}
 
 /*
 Copyright Google LLC. All Rights Reserved.

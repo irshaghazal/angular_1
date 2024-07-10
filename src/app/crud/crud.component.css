@@ -1,4 +1,20 @@
 p {
     font-weight: bold;
     color: red;
+    background-color: antiquewhite;
+}
+
+.wtw {
+    font-weight: bold;
+    font-size: large;
+    border-right: 2px solid #808080;
+    padding: 10px 20px;
+}
+
+.crudHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px 5px;
+    border-bottom: 2px solid #808080;
 }
