@@ -37,3 +37,15 @@
 .para1 {
     font-size: 15px;
 }
+
+.srch{
+    border-radius: 5px;
+    width: 80%; 
+    max-width: 300px;
+}
+
+.srchBtn {
+    display: flex;
+  
+    
+}
