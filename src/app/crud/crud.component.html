@@ -9,7 +9,7 @@
     <p class="para1">Policies are the list of insurance policies and policy holders data</p>
     <div class="srchBtn">
     <input class="srch" type="text" placeholder="Search for policies">
-    <button class="policy">New Policy</button>
+    <button class="policy" (click)="opnMdl()">New Policy</button>
     </div>
     <table class="table">
         <thead>
@@ -22,3 +22,67 @@
     </table>
 </form>
 
+<!-- <div class="modal" *ngIf="isModalOpen"> -->
+<div class="modal">
+    <div class="modal-content">
+        <div class="crtNwPlc">
+            <h4>Create a new Policy</h4>
+            <span class="close" (click)="clsMdl()">&times;</span>
+        </div>
+        <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="policyNum">Policy Number</label>
+                <input type="text" id="policyNum" class="form-control" name="policyNum">
+            </div>
+
+            <div class="form-group">
+                <label for="policyHldNm">Name</label>
+                <input type="text" id="policyHldNm" class="form-control" name="policyHldNm">
+            </div>
+
+            <div class="form-group">
+                <label for="hldAge">Age</label>
+                <input type="number" id="hldAge" class="form-control" name="hldAge">
+            </div>
+
+            <div class="form-group">
+                <label for="hldGender">Gender</label>
+                <select name="hldGender" id="hldGender" class="form-control">
+                    <option value=""></option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+            
+            <hr>
+            <button type="submit" class="btn btn-secondary">Cancel</button>
+            <button type="submit" class="btn btn-secondary">Create</button>
+        </form>
+</div>
+</div>
+
+<!-- <div class="modal" *ngIf="isModalOpen">
+    <div class="modal-content">
+        <span class="close" (click)="clsMdl()">&times;</span>
+        <h2>New Policy Form</h2>
+        <form (ngSubmit)="onSubmit()">
+            <label for="policyId">Policy ID:</label>
+            <input type="text" id="policyId" name="policyId" [(ngModel)]="policyId" required>
+            
+            <label for="policyHolderName">Policy Holder Name:</label>
+            <input type="text" id="policyHolderName" name="policyHolderName" [(ngModel)]="policyHolderName" required>
+            
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" [(ngModel)]="age" required>
+            
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" [(ngModel)]="gender" required>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</div> -->
