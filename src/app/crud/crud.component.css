@@ -10,6 +10,8 @@
 .policy {
     margin-left: 22px;
     border-radius: 5px;
+    background-color: rgb(125, 10, 125);
+    height: 35px;
 }
 
 .crudHead {
@@ -46,6 +48,5 @@
 
 .srchBtn {
     display: flex;
-  
-    
+    justify-content: space-between;
 }
