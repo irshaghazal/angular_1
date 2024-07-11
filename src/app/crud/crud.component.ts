@@ -7,5 +7,6 @@ import { Component } from '@angular/core';
   
 })
 export class CrudComponent {
+  tblHdr = ['Policy Number', 'Policy Holder Name', 'Policy Holder Age', 'Policy Holder Gender', 'Action']
 
 }
