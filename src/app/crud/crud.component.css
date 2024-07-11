@@ -59,7 +59,7 @@
 }
 
 .crtNwPlc {
-    display: flex;
+/* background-color: rgb(125, 10, 125); */
 }
 
 .modal {
@@ -88,7 +88,8 @@
     color: #aaa;
     float: right;
     font-size: 28px;
-    font-weight: bold;
+    font-weight: bold;  
+    margin-top: -4px;  
 }
 
 .close:hover,
@@ -103,9 +104,9 @@
     flex-direction: column;
 } */
 
-/* label {
+label {
     margin-top: 10px;
-} */
+}
 
 /* input, select, button {
     margin-top: 5px;
