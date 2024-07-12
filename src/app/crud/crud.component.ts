@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { CrudService } from '../services/crud.service';
 
 @Component({
   selector: 'app-crud',
@@ -7,18 +8,23 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./crud.component.css']
   
 })
-export class CrudComponent {
+export class CrudComponent implements OnInit{
   tblHdr = ['Policy Number', 'Policy Holder Name', 'Policy Holder Age', 'Policy Holder Gender', 'Action'];
   isModalOpen = false;
   createForm;
+  policies: any;
 
-  constructor(fb: FormBuilder) {
+  constructor(fb: FormBuilder, private service: CrudService) {
     this.createForm = fb.group({
       Number: [""],
       Name: [""],
       Age: [""],
       Gender: [""],
     })
+  }
+
+  ngOnInit(): void {
+    this.getData();
   }
 
   opnMdl() {
@@ -30,7 +36,21 @@ export class CrudComponent {
   }
 
   onSubmit() {
-    console.log(this.createForm.value);
+    // console.log(this.createForm.value);
+    this.service.createData(this.createForm.value).subscribe(data => {
+      alert("Create");
+      this.createForm.reset();
+      this.getData();
+      console.log(data);
+    })
+  }
+
+  getData() {
+    // console.log(this.createForm.value);
+    this.service.getData().subscribe(data => {
+      console.log('policies', data);
+      this.policies = data;
+    })
   }
 
 }

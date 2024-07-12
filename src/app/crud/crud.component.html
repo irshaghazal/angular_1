@@ -18,12 +18,21 @@
         </tr>
     </thead>
     <tbody>
+        <tr *ngFor="let plc of policies">
+            <td>{{ plc.Number }}</td>
+            <td>{{ plc.Name }}</td>
+            <td>{{ plc.Age }}</td>
+            <td>{{ plc.Gender }}</td>
+            <td>
+                <button type="button" class="btn btn-danger">Delete</button>
+            </td>
+        </tr>
     </tbody>
     </table>
 </form>
 
-<!-- <div class="modal" *ngIf="isModalOpen"> -->
-<div class="modal">
+<div class="modal" *ngIf="isModalOpen">
+<!-- <div class="modal"> -->
     <div class="modal-content">
         <div class="crtNwPlc">
             <span class="close" (click)="clsMdl()">&times;</span>
@@ -61,7 +70,7 @@
             
             <hr>
             <button type="submit" class="btn btnCrt">Create</button>
-            <button type="button" class="btn btnCncl">Cancel</button>
+            <button type="button" class="btn btnCncl" (click)="clsMdl()">Cancel</button>
         </form>
 </div>
 </div>
