@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-crud',
@@ -9,12 +10,16 @@ import { Component } from '@angular/core';
 export class CrudComponent {
   tblHdr = ['Policy Number', 'Policy Holder Name', 'Policy Holder Age', 'Policy Holder Gender', 'Action'];
   isModalOpen = false;
+  createForm;
 
-  policyId: string = '';
-  policyHolderName: string = '';
-  age: number = 0;
-  gender: string = '';
-  
+  constructor(fb: FormBuilder) {
+    this.createForm = fb.group({
+      Number: [""],
+      Name: [""],
+      Age: [""],
+      Gender: [""],
+    })
+  }
 
   opnMdl() {
     this.isModalOpen = true;
@@ -25,10 +30,7 @@ export class CrudComponent {
   }
 
   onSubmit() {
-    console.log('Policy ID:', this.policyId);
-    console.log('Policy Holder Name:', this.policyHolderName);
-    console.log('Age:', this.age);
-    console.log('Gender:', this.gender);
-    this.clsMdl();
+    console.log(this.createForm.value);
   }
+
 }

@@ -16,6 +16,7 @@ import { CrudComponent } from './crud/crud.component';
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
+    ReactiveFormsModule
     
   ],
   bootstrap: [

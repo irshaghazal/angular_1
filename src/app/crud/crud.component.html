@@ -29,25 +29,30 @@
             <span class="close" (click)="clsMdl()">&times;</span>
             <h4>Create a new Policy</h4>
         </div>
-        <form (ngSubmit)="onSubmit()">
+        <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
+        <div class="plcBody">Policy</div>
             <div class="form-group">
                 <label for="policyNum">Policy Number</label>
-                <input type="text" id="policyNum" class="form-control" name="policyNum">
+                <input type="text" id="policyNum" class="form-control" placeholder="Enter Policy Number" name="policyNum" formControlName="Number">
             </div>
+
+            <hr>
+
+             <div class="plcBody">Policy Holder</div>
 
             <div class="form-group">
                 <label for="policyHldNm">Name</label>
-                <input type="text" id="policyHldNm" class="form-control" name="policyHldNm">
+                <input type="text" id="policyHldNm" class="form-control" placeholder="Enter Policy Holder Name" name="policyHldNm" formControlName="Name">
             </div>
 
             <div class="form-group">
                 <label for="hldAge">Age</label>
-                <input type="number" id="hldAge" class="form-control" name="hldAge">
+                <input type="number" id="hldAge" class="form-control" placeholder="Enter Policy Holder Age" name="hldAge" formControlName="Age">
             </div>
 
             <div class="form-group">
                 <label for="hldGender">Gender</label>
-                <select name="hldGender" id="hldGender" class="form-control">
+                <select name="hldGender" id="hldGender" class="form-control" formControlName="Gender">
                     <option value=""></option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
@@ -55,8 +60,8 @@
             </div>
             
             <hr>
-            <button type="submit" class="btn btn-secondary">Cancel</button>
-            <button type="submit" class="btn btn-secondary">Create</button>
+            <button type="submit" class="btn btnCrt">Create</button>
+            <button type="button" class="btn btnCncl">Cancel</button>
         </form>
 </div>
 </div>
