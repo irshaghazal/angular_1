@@ -18,7 +18,11 @@ export class CrudService {
     return this.http.get(this.url+"policies");
   }
 
-  deleteData(num: any): Observable<any> {
-    return this.http.delete(this.url+"policies/" + num);
+  deleteData(id: any): Observable<any> {
+    return this.http.delete(this.url+"policies/" + id);
+  }
+
+  updateData(id: any): Observable<any> {
+    return this.http.get(this.url+"policies/" + id);
   }
 }

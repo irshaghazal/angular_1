@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { CrudService } from '../services/crud.service';
 
+declare var $: any;
+
 @Component({
   selector: 'app-crud',
   templateUrl: './crud.component.html',
@@ -51,10 +53,26 @@ export class CrudComponent implements OnInit{
     })
   }
 
-  deleteData(num: any) {
-    this.service.deleteData(num).subscribe(data => {
+  deleteData(ID: any) {
+    this.service.deleteData(ID).subscribe(data => {
       alert("Policy Deleted");
       this.getData();
+    })
+  }
+
+  updateData(ID: any) {
+    this.service.updateData(ID).subscribe(data => {
+      alert("Successfully Get");
+      console.log("Detail", data);
+      setTimeout(() => {
+        $(".modal").click();
+      })
+      this.createForm.patchValue({
+        Number: data.Number,
+        Name: data.Name,
+        Age: data.Age,
+        Gender: data.Gender,
+      })
     })
   }
 

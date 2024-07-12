@@ -25,27 +25,6 @@
   ],
   "policies": [
     {
-      "Number": "12345",
-      "Name": "John Doe",
-      "Age": 30,
-      "Gender": "male",
-      "id": "565d"
-    },
-    {
-      "Number": "67890",
-      "Name": "Jane Doe",
-      "Age": 25,
-      "Gender": "female",
-      "id": "41e6"
-    },
-    {
-      "id": "8804",
-      "Number": "1001",
-      "Name": "John Doe",
-      "Age": 33,
-      "Gender": "male"
-    },
-    {
       "id": "625a",
       "Number": "1001",
       "Name": "John Doe",
@@ -148,34 +127,6 @@
       "Number": "1015",
       "Name": "David Robinson",
       "Age": 48,
-      "Gender": "male"
-    },
-    {
-      "id": "f06b",
-      "Number": "1017",
-      "Name": "Ava Scott",
-      "Age": 24,
-      "Gender": "female"
-    },
-    {
-      "id": "0ddf",
-      "Number": "1016",
-      "Name": "Ethan Walker",
-      "Age": 35,
-      "Gender": "male"
-    },
-    {
-      "id": "2b38",
-      "Number": "1016",
-      "Name": "Ethan Walker",
-      "Age": 35,
-      "Gender": "male"
-    },
-    {
-      "id": "861a",
-      "Number": "1018",
-      "Name": "Lucas Young",
-      "Age": 50,
       "Gender": "male"
     },
     {
