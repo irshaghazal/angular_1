@@ -36,7 +36,6 @@ export class CrudComponent implements OnInit{
   }
 
   onSubmit() {
-    // console.log(this.createForm.value);
     this.service.createData(this.createForm.value).subscribe(data => {
       alert("Create");
       this.createForm.reset();
@@ -46,10 +45,16 @@ export class CrudComponent implements OnInit{
   }
 
   getData() {
-    // console.log(this.createForm.value);
     this.service.getData().subscribe(data => {
       console.log('policies', data);
       this.policies = data;
+    })
+  }
+
+  deleteData(num: any) {
+    this.service.deleteData(num).subscribe(data => {
+      alert("Policy Deleted");
+      this.getData();
     })
   }
 

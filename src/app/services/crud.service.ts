@@ -17,4 +17,8 @@ export class CrudService {
   getData(): Observable<any> {
     return this.http.get(this.url+"policies");
   }
+
+  deleteData(num: any): Observable<any> {
+    return this.http.delete(this.url+"policies/" + num);
+  }
 }
