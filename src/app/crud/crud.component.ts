@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { CrudService } from '../services/crud.service';
+import { data } from 'jquery';
 
 declare var $: any;
 
@@ -18,6 +19,7 @@ export class CrudComponent implements OnInit{
 
   constructor(fb: FormBuilder, private service: CrudService) {
     this.createForm = fb.group({
+      id: [null],
       Number: [""],
       Name: [""],
       Age: [""],
@@ -31,19 +33,35 @@ export class CrudComponent implements OnInit{
 
   opnMdl() {
     this.isModalOpen = true;
+    this.createForm.reset();
   }
 
   clsMdl() {
     this.isModalOpen = false;
+    this.createForm.reset();
   }
 
   onSubmit() {
-    this.service.createData(this.createForm.value).subscribe(data => {
-      alert("Create");
-      this.createForm.reset();
-      this.getData();
-      console.log(data);
-    })
+    if (this.createForm.value.id) {
+      // Update
+      this.service.updateData(this.createForm.value.id, this.createForm.value).subscribe(data => {
+        alert("Policy Updated");
+        this.createForm.reset();
+        this.getData();
+        console.log(data);
+        this.clsMdl();
+      });
+    }
+    else {
+      // Create
+      this.service.createData(this.createForm.value).subscribe(data => {
+        alert("Policy Created");
+        this.createForm.reset();
+        this.getData();
+        console.log(data);
+        this.clsMdl();
+      })
+    }
   }
 
   getData() {
@@ -61,13 +79,11 @@ export class CrudComponent implements OnInit{
   }
 
   updateData(ID: any) {
-    this.service.updateData(ID).subscribe(data => {
-      alert("Successfully Get");
+    this.service.getPolicyById(ID).subscribe(data => {
       console.log("Detail", data);
-      setTimeout(() => {
-        $(".modal").click();
-      })
+      this.isModalOpen = true;
       this.createForm.patchValue({
+        id: data.id,
         Number: data.Number,
         Name: data.Name,
         Age: data.Age,
