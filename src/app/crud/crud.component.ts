@@ -16,10 +16,12 @@ export class CrudComponent implements OnInit{
   isModalOpen = false;
   createForm;
   policies: any;
+  mdlTitle: string = '';
+  crtUpt: string = '';
 
   constructor(fb: FormBuilder, private service: CrudService) {
     this.createForm = fb.group({
-      id: [null],
+      id: [""],
       Number: [""],
       Name: [""],
       Age: [""],
@@ -34,11 +36,17 @@ export class CrudComponent implements OnInit{
   opnMdl() {
     this.isModalOpen = true;
     this.createForm.reset();
+    this.mdlTitle = 'Create a new Policy';
+    this.crtUpt = 'Create';
   }
 
   clsMdl() {
     this.isModalOpen = false;
     this.createForm.reset();
+  }
+
+  generateUniqueId(): string {
+    return Date.now().toString(36) + Math.random().toString(36).substring(2, 15);
   }
 
   onSubmit() {
@@ -54,7 +62,9 @@ export class CrudComponent implements OnInit{
     }
     else {
       // Create
-      this.service.createData(this.createForm.value).subscribe(data => {
+      const newPolicy = { ...this.createForm.value, id: this.generateUniqueId() };
+      this.service.createData(newPolicy).subscribe(data => {
+      // this.service.createData(this.createForm.value).subscribe(data => {
         alert("Policy Created");
         this.createForm.reset();
         this.getData();
@@ -89,6 +99,8 @@ export class CrudComponent implements OnInit{
         Age: data.Age,
         Gender: data.Gender,
       })
+      this.mdlTitle = 'Updating Policy: ' + data.Number;
+      this.crtUpt = 'Update';
     })
   }
 

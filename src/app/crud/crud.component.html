@@ -36,7 +36,7 @@
     <div class="modal-content">
         <div class="crtNwPlc">
             <span class="close" (click)="clsMdl()">&times;</span>
-            <h4>Create a new Policy</h4>
+            <h4>{{ mdlTitle }}</h4>
         </div>
         <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
             <!-- <input type="hidden" formControlName="id"> -->
@@ -70,7 +70,7 @@
             </div>
             
             <hr>
-            <button type="submit" class="btn btnCrt">Create</button>
+            <button type="submit" class="btn btnCrt">{{ crtUpt }}</button>
             <button type="button" class="btn btnCncl" (click)="clsMdl()">Cancel</button>
         </form>
 </div>
