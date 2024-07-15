@@ -11,25 +11,29 @@
     <input class="srch form-control" type="text" placeholder="Search for policies">
     <button class="policy" (click)="opnMdl()">New Policy</button>
     </div>
-    <table class="table">
-        <thead>
-        <tr>
-            <th class="headr" *ngFor="let hdrs of tblHdr">{{ hdrs }}</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let plc of policies">
-            <td><span (click)="updateData(plc.id)">{{ plc.Number }}</span></td>
-            <td>{{ plc.Name }}</td>
-            <td>{{ plc.Age }}</td>
-            <td>{{ plc.Gender }}</td>
-            <td>
-                <!-- <button type="button" class="btn btn-danger" (click)="deleteData(plc.id)">Delete</button> -->
-                <button type="button" class="btn btn-danger" (click)="cnfrmDlt(plc.id, plc.Number)">Delete</button>
-            </td>
-        </tr>
-    </tbody>
-    </table>
+    <div class="table-container">
+        <table class="table">
+            <thead>
+            <tr>
+                <th class="headr" *ngFor="let hdrs of tblHdr">{{ hdrs }}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let plc of policies" class="tbd">
+                <td><span (click)="updateData(plc.id)" class="plcNum">{{ plc.Number }}</span></td>
+                <td>{{ plc.Name }}</td>
+                <td>{{ plc.Age }}</td>
+                <td>{{ plc.Gender }}</td>
+                <td>
+                    <!-- <button type="button" class="btn btn-danger" (click)="deleteData(plc.id)">Delete</button> -->
+                    <button type="button" class="btn tbdDlt" (click)="cnfrmDlt(plc.id, plc.Number)">Delete</button>
+                </td>
+                <!-- <td class="scrlBar"></td> -->
+                <div class="scrlBar"></div>
+            </tr>
+        </tbody>
+        </table>
+    </div>
 </form>
 
 <div class="modal" *ngIf="isModalOpen">
