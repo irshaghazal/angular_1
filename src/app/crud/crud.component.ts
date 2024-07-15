@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { CrudService } from '../services/crud.service';
 import { data } from 'jquery';
 
@@ -25,7 +25,7 @@ export class CrudComponent implements OnInit{
   constructor(fb: FormBuilder, private service: CrudService) {
     this.createForm = fb.group({
       id: [""],
-      Number: [""],
+      Number: ["", [Validators.required, Validators.minLength(4)]],
       Name: [""],
       Age: [""],
       Gender: [""],
@@ -34,6 +34,10 @@ export class CrudComponent implements OnInit{
 
   ngOnInit(): void {
     this.getData();
+  }
+
+  get Number() {
+    return this.createForm.get('Number');
   }
 
   opnMdl() {

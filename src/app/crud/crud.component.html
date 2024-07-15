@@ -47,6 +47,10 @@
             <div class="form-group">
                 <label for="policyNum">Policy Number</label>
                 <input type="text" id="policyNum" class="form-control" placeholder="Enter Policy Number" name="policyNum" formControlName="Number">
+                <div *ngIf="Number?.touched && Number?.invalid" class="alert alert-danger">
+                    <div *ngIf="Number?.errors?.['required']">Policy Number is required.</div>
+                    <div *ngIf="Number?.errors?.['minlength']">Policy Number should be minimum {{ Number?.errors?.['minlength']?.requiredLength }} digits.</div>
+                </div>  
             </div>
 
             <hr>
