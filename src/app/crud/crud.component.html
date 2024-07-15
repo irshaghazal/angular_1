@@ -24,7 +24,8 @@
             <td>{{ plc.Age }}</td>
             <td>{{ plc.Gender }}</td>
             <td>
-                <button type="button" class="btn btn-danger" (click)="deleteData(plc.id)">Delete</button>
+                <!-- <button type="button" class="btn btn-danger" (click)="deleteData(plc.id)">Delete</button> -->
+                <button type="button" class="btn btn-danger" (click)="cnfrmDlt(plc.id, plc.Number)">Delete</button>
             </td>
         </tr>
     </tbody>
@@ -32,14 +33,12 @@
 </form>
 
 <div class="modal" *ngIf="isModalOpen">
-<!-- <div class="modal"> -->
     <div class="modal-content">
         <div class="crtNwPlc">
             <span class="close" (click)="clsMdl()">&times;</span>
             <h4>{{ mdlTitle }}</h4>
         </div>
         <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
-            <!-- <input type="hidden" formControlName="id"> -->
         <div class="plcBody">Policy</div>
             <div class="form-group">
                 <label for="policyNum">Policy Number</label>
@@ -74,6 +73,24 @@
             <button type="button" class="btn btnCncl" (click)="clsMdl()">Cancel</button>
         </form>
 </div>
+</div>
+
+<!-- Confirm Delete -->
+
+<div class="modal" *ngIf="shwCnfrm">
+    <div class="modal-content">
+        <div class="crtNwPlc">
+            <span class="close" (click)="cnclDlt()">&times;</span>
+            <h4>Confirm Deletion</h4>
+        </div>
+        <div class="modal-body">
+            <p>Are you sure you want to delete Policy #: {{ policyNumberToDelete }}?</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="cnclDlt()">Cancel</button>
+            <button type="button" class="btn btn-danger" (click)="dltCnfrm()">Delete</button>
+        </div>
+    </div>
 </div>
 
 <!-- <div class="modal" *ngIf="isModalOpen">

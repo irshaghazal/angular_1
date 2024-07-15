@@ -18,6 +18,9 @@ export class CrudComponent implements OnInit{
   policies: any;
   mdlTitle: string = '';
   crtUpt: string = '';
+  shwCnfrm = false;
+  policyNumberToDelete: string = '';
+  policyIdToDelete: string = '';
 
   constructor(fb: FormBuilder, private service: CrudService) {
     this.createForm = fb.group({
@@ -81,12 +84,28 @@ export class CrudComponent implements OnInit{
     })
   }
 
-  deleteData(ID: any) {
-    this.service.deleteData(ID).subscribe(data => {
+  cnfrmDlt(id: string, number: string) {
+    this.policyIdToDelete = id;
+    this.policyNumberToDelete = number;
+    this.shwCnfrm = true;
+  }
+
+  dltCnfrm() {
+    this.service.deleteData(this.policyIdToDelete).subscribe(data => {
       alert("Policy Deleted");
       this.getData();
-    })
+      this.shwCnfrm = false;
+      // this.policyIdToDelete = '';
+      // this.policyNumberToDelete = '';
+    });
   }
+
+  cnclDlt() {
+    this.shwCnfrm = false;
+    // this.policyIdToDelete = '';
+    // this.policyNumberToDelete = '';
+  }
+
 
   updateData(ID: any) {
     this.service.getPolicyById(ID).subscribe(data => {
