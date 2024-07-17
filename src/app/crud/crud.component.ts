@@ -70,10 +70,12 @@ export class CrudComponent implements OnInit{
   }
 
   onSubmit() {
+    // if (this.createForm.invalid) {
+    //   return;
+    // }
     if (this.createForm.value.id) {
       // Update
       this.service.updateData(this.createForm.value.id, this.createForm.value).subscribe(data => {
-        alert("Policy Updated");
         this.createForm.reset();
         this.getData();
         console.log(data);
@@ -85,7 +87,6 @@ export class CrudComponent implements OnInit{
       const newPolicy = { ...this.createForm.value, id: this.generateUniqueId() };
       this.service.createData(newPolicy).subscribe(data => {
       // this.service.createData(this.createForm.value).subscribe(data => {
-        alert("Policy Created");
         this.createForm.reset();
         this.getData();
         console.log(data);
@@ -109,7 +110,6 @@ export class CrudComponent implements OnInit{
 
   dltCnfrm() {
     this.service.deleteData(this.policyIdToDelete).subscribe(data => {
-      alert("Policy Deleted");
       this.getData();
       this.shwCnfrm = false;
       // this.policyIdToDelete = '';
