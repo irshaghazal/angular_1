@@ -30,4 +30,9 @@ export class CrudService {
     return this.http.get(this.url + "policies/" + id);
   }
 
+getPolicyByNumber(policyNumber: string): Observable<any> {
+  return this.http.get(this.url + "policies?Number=" + policyNumber);
+}
+
+
 }

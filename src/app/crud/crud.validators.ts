@@ -1,5 +1,5 @@
 import { AbstractControl, ValidationErrors } from "@angular/forms";
-import { Observable } from "rxjs";
+import { Observable, catchError, map, of } from "rxjs";
 import { CrudService } from "../services/crud.service";
 
 export class CrudValidators {
@@ -20,6 +20,16 @@ export class CrudValidators {
             return {checkAge: true}
         }
         return null;
+    }
+
+    static shouldBeUnique2(service: CrudService) {
+        return (control: AbstractControl): Observable<ValidationErrors | null> => {
+          return service.getPolicyByNumber(control.value).pipe(
+            map(response => {
+              return response && response.length > 0 ? { shouldBeUnique2: true } : null;
+            })
+          );
+        };
     }
 
 }

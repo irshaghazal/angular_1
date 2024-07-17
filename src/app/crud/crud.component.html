@@ -50,6 +50,7 @@
                 <div *ngIf="Number?.touched && Number?.invalid" class="alert alert-danger">
                     <div *ngIf="Number?.errors?.['required']">Policy Number is required.</div>
                     <div *ngIf="Number?.errors?.['minlength']">Policy Number should be minimum {{ Number?.errors?.['minlength']?.requiredLength }} digits.</div>
+                    <div *ngIf="Number?.errors?.['shouldBeUnique2']">Policy Number is already taken.</div>
                 </div>  
             </div>
 

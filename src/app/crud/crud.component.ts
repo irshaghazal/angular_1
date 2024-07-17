@@ -26,7 +26,7 @@ export class CrudComponent implements OnInit{
   constructor(fb: FormBuilder, private service: CrudService) {
     this.createForm = fb.group({
       id: [""],
-      Number: ["", [Validators.required, Validators.minLength(4)]],
+      Number: ["", [Validators.required, Validators.minLength(4)], [CrudValidators.shouldBeUnique2(this.service)]],
       Name: ["", [Validators.required]],
       Age: ["", [Validators.required, CrudValidators.checkAge]],
       Gender: ["", [Validators.required]],
