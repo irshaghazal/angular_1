@@ -60,11 +60,18 @@
             <div class="form-group">
                 <label for="policyHldNm">Name</label>
                 <input type="text" id="policyHldNm" class="form-control" placeholder="Enter Policy Holder Name" name="policyHldNm" formControlName="Name">
+                <div *ngIf="Name?.touched && Name?.invalid" class="alert alert-danger">
+                    <div *ngIf="Name?.errors?.['required']">Policy Holder Name is required.</div>
+                </div>  
             </div>
 
             <div class="form-group">
                 <label for="hldAge">Age</label>
                 <input type="number" id="hldAge" class="form-control" placeholder="Enter Policy Holder Age" name="hldAge" formControlName="Age">
+                <div *ngIf="Age?.touched && Age?.invalid" class="alert alert-danger">
+                    <div *ngIf="Age?.errors?.['required']">Policy Holder Age is required.</div>
+                    <div *ngIf="Age?.errors?.['checkAge']">Age must be greater then 0.</div>
+                </div>  
             </div>
 
             <div class="form-group">
@@ -74,6 +81,9 @@
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                 </select>
+                <div *ngIf="Gender?.touched && Gender?.invalid" class="alert alert-danger">
+                    <div *ngIf="Gender?.errors?.['required']">Policy Holder Gender is required.</div>
+                </div>  
             </div>
             
             <hr>

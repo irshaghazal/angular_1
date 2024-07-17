@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CrudService } from '../services/crud.service';
 import { data } from 'jquery';
+import { CrudValidators } from './crud.validators';
 
 declare var $: any;
 
@@ -26,9 +27,9 @@ export class CrudComponent implements OnInit{
     this.createForm = fb.group({
       id: [""],
       Number: ["", [Validators.required, Validators.minLength(4)]],
-      Name: [""],
-      Age: [""],
-      Gender: [""],
+      Name: ["", [Validators.required]],
+      Age: ["", [Validators.required, CrudValidators.checkAge]],
+      Gender: ["", [Validators.required]],
     })
   }
 
@@ -38,6 +39,18 @@ export class CrudComponent implements OnInit{
 
   get Number() {
     return this.createForm.get('Number');
+  }
+
+  get Name() {
+    return this.createForm.get('Name');
+  }
+
+  get Age() {
+    return this.createForm.get('Age');
+  }
+
+  get Gender() {
+    return this.createForm.get('Gender');
   }
 
   opnMdl() {
