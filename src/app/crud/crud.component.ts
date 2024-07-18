@@ -97,29 +97,74 @@ export class CrudComponent implements OnInit{
   //   }
   // }
 
+  // onSubmit() {
+  //   if (this.isCreateMode && this.createForm.invalid) {
+  //     this.markField();
+  //     return;
+  //   }
+
+  //   if (this.isCreateMode) {
+  //     const newPolicy = { ...this.createForm.value, id: this.generateUniqueId() };
+  //     this.service.createData(newPolicy).subscribe(data => {
+  //       this.createForm.reset();
+  //       this.getData();
+  //       console.log(data);
+  //       this.clsMdl();
+  //     });
+  //   } else {
+  //     this.service.updateData(this.createForm.value.id, this.createForm.value).subscribe(data => {
+  //       this.createForm.reset();
+  //       this.getData();
+  //       console.log(data);
+  //       this.clsMdl();
+  //     });
+  //   }
+  // }
+
   onSubmit() {
-    if (this.isCreateMode && this.createForm.invalid) {
+    if (this.createForm.invalid) {
       this.markField();
       return;
     }
-
-    if (this.isCreateMode) {
-      const newPolicy = { ...this.createForm.value, id: this.generateUniqueId() };
-      this.service.createData(newPolicy).subscribe(data => {
-        this.createForm.reset();
-        this.getData();
-        console.log(data);
-        this.clsMdl();
-      });
-    } else {
-      this.service.updateData(this.createForm.value.id, this.createForm.value).subscribe(data => {
-        this.createForm.reset();
-        this.getData();
-        console.log(data);
-        this.clsMdl();
-      });
+  
+    const policyNumber: string = this.createForm.value.Number || '';
+  
+    if (!policyNumber) {
+      return;
     }
+  
+    // Check if the policy number already exists
+    this.service.getPolicyByNumber(policyNumber).subscribe(response => {
+      const currentPolicyId: string = this.createForm.value.id || '';
+  
+      if (response && response.length > 0 && this.isCreateMode) {
+        // If creating a new policy and the policy number exists, show an error
+        this.Number?.setErrors({ shouldBeUnique2: true });
+      } else if (response && response.length > 0 && !this.isCreateMode && response[0].id !== currentPolicyId) {
+        // If updating an existing policy and the policy number exists, and it's not the same policy, show an error
+        this.Number?.setErrors({ shouldBeUnique2: true });
+      } else {
+        // If the policy number is unique or updating the same policy, proceed with submission
+        if (this.isCreateMode) {
+          const newPolicy = { ...this.createForm.value, id: this.generateUniqueId() };
+          this.service.createData(newPolicy).subscribe(data => {
+            this.createForm.reset();
+            this.getData();
+            console.log(data);
+            this.clsMdl();
+          });
+        } else {
+          this.service.updateData(this.createForm.value.id, this.createForm.value).subscribe(data => {
+            this.createForm.reset();
+            this.getData();
+            console.log(data);
+            this.clsMdl();
+          });
+        }
+      }
+    });
   }
+  
 
   markField() {
     Object.keys(this.createForm.controls).forEach(field => {

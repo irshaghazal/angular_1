@@ -22,14 +22,37 @@ export class CrudValidators {
         return null;
     }
 
+    // static shouldBeUnique2(service: CrudService) {
+    //     return (control: AbstractControl): Observable<ValidationErrors | null> => {
+    //       return service.getPolicyByNumber(control.value).pipe(
+    //         map(response => {
+    //           return response && response.length > 0 ? { shouldBeUnique2: true } : null;
+    //         })
+    //       );
+    //     };
+    // }
+
     static shouldBeUnique2(service: CrudService) {
         return (control: AbstractControl): Observable<ValidationErrors | null> => {
-          return service.getPolicyByNumber(control.value).pipe(
+          const policyNumber: string = control.value || '';
+          if (!policyNumber) {
+            return of(null);
+          }
+      
+          return service.getPolicyByNumber(policyNumber).pipe(
             map(response => {
-              return response && response.length > 0 ? { shouldBeUnique2: true } : null;
+              const currentPolicyId: string = control.root.get('id')?.value || '';
+      
+              if (response && response.length > 0 && response[0].id !== currentPolicyId) {
+                return { shouldBeUnique2: true };
+              }
+      
+              return null;
             })
           );
         };
-    }
+      }
+      
+      
 
 }
