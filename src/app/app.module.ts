@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { CrudComponent } from './crud/crud.component';
 import { CrudService } from './services/crud.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FilterPipe
     
   ],
   providers:[

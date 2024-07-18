@@ -23,6 +23,7 @@ export class CrudComponent implements OnInit{
   policyNumberToDelete: string = '';
   policyIdToDelete: string = '';
   isCreateMode = true;
+  searchText: any;
 
   constructor(fb: FormBuilder, private service: CrudService) {
     this.createForm = fb.group({
@@ -70,32 +71,6 @@ export class CrudComponent implements OnInit{
   generateUniqueId(): string {
     return Date.now().toString(36) + Math.random().toString(36).substring(2, 15);
   }
-
-  // onSubmit() {
-  //   if (this.createForm.invalid) {
-  //     return;
-  //   }
-  //   if (this.createForm.value.id) {
-  //     // Update
-  //     this.service.updateData(this.createForm.value.id, this.createForm.value).subscribe(data => {
-  //       this.createForm.reset();
-  //       this.getData();
-  //       console.log(data);
-  //       this.clsMdl();
-  //     });
-  //   }
-  //   else {
-  //     // Create
-  //     const newPolicy = { ...this.createForm.value, id: this.generateUniqueId() };
-  //     this.service.createData(newPolicy).subscribe(data => {
-  //     // this.service.createData(this.createForm.value).subscribe(data => {
-  //       this.createForm.reset();
-  //       this.getData();
-  //       console.log(data);
-  //       this.clsMdl();
-  //     })
-  //   }
-  // }
 
   // onSubmit() {
   //   if (this.isCreateMode && this.createForm.invalid) {

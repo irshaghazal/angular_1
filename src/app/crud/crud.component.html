@@ -1,14 +1,14 @@
 
 <div class="crudHead">
     <div class="wtw">WTW</div>
-    <button class="policy">Policies</button>
+    <button class="policy plcText">Policies</button>
 </div>
   
 <form class="frm">
     <div class="plcBody">Policies</div>
     <p class="para1">Policies are the list of insurance policies and policy holders data</p>
     <div class="srchBtn">
-    <input class="srch form-control" type="text" placeholder="Search for policies">
+    <input class="srch form-control" type="text" placeholder="Search for policies" [(ngModel)]="searchText" name="searchText">
     <button class="policy" (click)="opnMdl()">New Policy</button>
     </div>
     <div class="table-container">
@@ -19,7 +19,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let plc of policies" class="tbd">
+            <tr *ngFor="let plc of policies | filter:searchText" class="tbd">
                 <td><span (click)="updateData(plc.id)" class="plcNum">{{ plc.Number }}</span></td>
                 <td>{{ plc.Name }}</td>
                 <td>{{ plc.Age }}</td>

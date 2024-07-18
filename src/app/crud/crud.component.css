@@ -18,6 +18,10 @@ hr {
     height: 35px;
 }
 
+.plcText {
+    pointer-events: none;
+}
+
 .crudHead {
     display: flex;
     align-items: center;
