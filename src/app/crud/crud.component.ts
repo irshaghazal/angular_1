@@ -22,6 +22,7 @@ export class CrudComponent implements OnInit{
   shwCnfrm = false;
   policyNumberToDelete: string = '';
   policyIdToDelete: string = '';
+  isCreateMode = true;
 
   constructor(fb: FormBuilder, private service: CrudService) {
     this.createForm = fb.group({
@@ -58,6 +59,7 @@ export class CrudComponent implements OnInit{
     this.createForm.reset();
     this.mdlTitle = 'Create a new Policy';
     this.crtUpt = 'Create';
+    this.isCreateMode = true;
   }
 
   clsMdl() {
@@ -69,12 +71,47 @@ export class CrudComponent implements OnInit{
     return Date.now().toString(36) + Math.random().toString(36).substring(2, 15);
   }
 
+  // onSubmit() {
+  //   if (this.createForm.invalid) {
+  //     return;
+  //   }
+  //   if (this.createForm.value.id) {
+  //     // Update
+  //     this.service.updateData(this.createForm.value.id, this.createForm.value).subscribe(data => {
+  //       this.createForm.reset();
+  //       this.getData();
+  //       console.log(data);
+  //       this.clsMdl();
+  //     });
+  //   }
+  //   else {
+  //     // Create
+  //     const newPolicy = { ...this.createForm.value, id: this.generateUniqueId() };
+  //     this.service.createData(newPolicy).subscribe(data => {
+  //     // this.service.createData(this.createForm.value).subscribe(data => {
+  //       this.createForm.reset();
+  //       this.getData();
+  //       console.log(data);
+  //       this.clsMdl();
+  //     })
+  //   }
+  // }
+
   onSubmit() {
-    // if (this.createForm.invalid) {
-    //   return;
-    // }
-    if (this.createForm.value.id) {
-      // Update
+    if (this.isCreateMode && this.createForm.invalid) {
+      this.markField();
+      return;
+    }
+
+    if (this.isCreateMode) {
+      const newPolicy = { ...this.createForm.value, id: this.generateUniqueId() };
+      this.service.createData(newPolicy).subscribe(data => {
+        this.createForm.reset();
+        this.getData();
+        console.log(data);
+        this.clsMdl();
+      });
+    } else {
       this.service.updateData(this.createForm.value.id, this.createForm.value).subscribe(data => {
         this.createForm.reset();
         this.getData();
@@ -82,17 +119,13 @@ export class CrudComponent implements OnInit{
         this.clsMdl();
       });
     }
-    else {
-      // Create
-      const newPolicy = { ...this.createForm.value, id: this.generateUniqueId() };
-      this.service.createData(newPolicy).subscribe(data => {
-      // this.service.createData(this.createForm.value).subscribe(data => {
-        this.createForm.reset();
-        this.getData();
-        console.log(data);
-        this.clsMdl();
-      })
-    }
+  }
+
+  markField() {
+    Object.keys(this.createForm.controls).forEach(field => {
+      const control = this.createForm.get(field);
+      control?.markAsTouched({onlySelf: true});
+    })
   }
 
   getData() {
@@ -112,15 +145,11 @@ export class CrudComponent implements OnInit{
     this.service.deleteData(this.policyIdToDelete).subscribe(data => {
       this.getData();
       this.shwCnfrm = false;
-      // this.policyIdToDelete = '';
-      // this.policyNumberToDelete = '';
     });
   }
 
   cnclDlt() {
     this.shwCnfrm = false;
-    // this.policyIdToDelete = '';
-    // this.policyNumberToDelete = '';
   }
 
 
@@ -137,6 +166,7 @@ export class CrudComponent implements OnInit{
       })
       this.mdlTitle = 'Updating Policy: ' + data.Number;
       this.crtUpt = 'Update';
+      this.isCreateMode = false;
     })
   }
 

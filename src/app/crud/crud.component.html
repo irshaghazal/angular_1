@@ -88,8 +88,8 @@
             </div>
             
             <hr>
-            <!-- [disabled]="createForm.invalid" -->
-            <button type="submit" class="btn btnCrt">{{ crtUpt }}</button>
+            <!-- [disabled]="createForm.invalid && !isUpdateMode" -->
+            <button type="submit" class="btn btnCrt" >{{ crtUpt }}</button>
             <button type="button" class="btn btnCncl" (click)="clsMdl()">Cancel</button>
         </form>
 </div>
