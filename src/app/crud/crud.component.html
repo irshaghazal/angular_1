@@ -9,7 +9,7 @@
     <p class="para1">Policies are the list of insurance policies and policy holders data</p>
     <div class="srchBtn">
     <input class="srch form-control" type="text" placeholder="Search for policies" [(ngModel)]="searchText" name="searchText">
-    <button class="policy" (click)="opnMdl()">New Policy</button>
+    <button class="policy newPlc" (click)="opnMdl()">New Policy</button>
     </div>
     <div class="table-container">
         <table class="table">
@@ -39,18 +39,19 @@
 <div class="modal" *ngIf="isModalOpen">
     <div class="modal-content">
         <div class="crtNwPlc">
-            <span class="close" (click)="clsMdl()">&times;</span>
             <h4>{{ mdlTitle }}</h4>
+            <span class="close" (click)="clsMdl()">&times;</span>
         </div>
         <form [formGroup]="createForm" (ngSubmit)="onSubmit()">
         <div class="plcBody">Policy</div>
             <div class="form-group">
                 <label for="policyNum">Policy Number</label>
-                <input type="text" id="policyNum" class="form-control" placeholder="Enter Policy Number" name="policyNum" formControlName="Number">
+                <input type="text" id="policyNum" class="form-control" placeholder="Enter Policy Number" name="policyNum" formControlName="Number" pattern="\d+">
                 <div *ngIf="Number?.touched && Number?.invalid" class="alert alert-danger">
                     <div *ngIf="Number?.errors?.['required']">Policy Number is required.</div>
                     <div *ngIf="Number?.errors?.['minlength']">Policy Number should be minimum {{ Number?.errors?.['minlength']?.requiredLength }} digits.</div>
                     <div *ngIf="Number?.errors?.['shouldBeUnique2']">Policy Number is already taken.</div>
+                    <div *ngIf="Number?.errors?.['pattern']">Policy Number should contain only numbers.</div>
                 </div>  
             </div>
 
@@ -90,7 +91,7 @@
             <hr>
             <!-- [disabled]="createForm.invalid && !isUpdateMode" -->
             <button type="submit" class="btn btnCrt" >{{ crtUpt }}</button>
-            <button type="button" class="btn btnCncl" (click)="clsMdl()">Cancel</button>
+            <button type="button" class="btn btnCncl" (click)="cnclMdl()">Cancel</button>
         </form>
 </div>
 </div>
@@ -100,41 +101,14 @@
 <div class="modal" *ngIf="shwCnfrm">
     <div class="modal-content">
         <div class="crtNwPlc">
-            <span class="close" (click)="cnclDlt()">&times;</span>
             <h4>Confirm Deletion</h4>
+            <span class="close" (click)="cnclDlt()">&times;</span>
         </div>
-        <div class="modal-body">
-            <p>Are you sure you want to delete Policy #: {{ policyNumberToDelete }}?</p>
-        </div>
+            <p>Are you sure you want to delete Policy #: <span class="interPur">{{ policyNumberToDelete }}</span></p>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" (click)="cnclDlt()">Cancel</button>
-            <button type="button" class="btn btn-danger" (click)="dltCnfrm()">Delete</button>
+            <button type="button" class="btn btndlt" (click)="dltCnfrm()">Confirm</button>
         </div>
     </div>
 </div>
 
-<!-- <div class="modal" *ngIf="isModalOpen">
-    <div class="modal-content">
-        <span class="close" (click)="clsMdl()">&times;</span>
-        <h2>New Policy Form</h2>
-        <form (ngSubmit)="onSubmit()">
-            <label for="policyId">Policy ID:</label>
-            <input type="text" id="policyId" name="policyId" [(ngModel)]="policyId" required>
-            
-            <label for="policyHolderName">Policy Holder Name:</label>
-            <input type="text" id="policyHolderName" name="policyHolderName" [(ngModel)]="policyHolderName" required>
-            
-            <label for="age">Age:</label>
-            <input type="number" id="age" name="age" [(ngModel)]="age" required>
-            
-            <label for="gender">Gender:</label>
-            <select id="gender" name="gender" [(ngModel)]="gender" required>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-            </select>
-            
-            <button type="submit">Submit</button>
-        </form>
-    </div>
-</div> -->

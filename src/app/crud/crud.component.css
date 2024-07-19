@@ -95,9 +95,20 @@ hr {
     border: 1px solid rgb(232, 232, 232);
 }
 
-/* .crtNwPlc {
-background-color: rgb(125, 10, 125);
-} */
+.crtNwPlc {
+    background-color: rgb(125, 10, 125);
+    padding: 14px;
+    margin: -20px -20px 20px;
+    border-radius: 5px 5px 0 0;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.crtNwPlc h4 {
+    font-size: 22px;
+}
 
 .modal {
     display: block;
@@ -127,7 +138,7 @@ background-color: rgb(125, 10, 125);
     float: right;
     font-size: 28px;
     font-weight: bold;  
-    margin-top: -4px;  
+    margin-top: -4px;
 }
 
 .close:hover,
@@ -185,4 +196,21 @@ button:hover {
     font-size: 15px;
     float: left;
     border-radius: 5px;
+}
+
+.btndlt {
+    background-color: rgb(125, 10, 125);
+}
+
+.btndlt:hover, .newPlc:hover {
+    background-color: rgb(115, 14, 115);
+}
+
+.interPur {
+    font-weight: bolder;
+    color: rgb(125, 10, 125);
+}
+
+.modal-footer {
+    padding-bottom: 0;
 }

@@ -24,6 +24,7 @@ export class CrudComponent implements OnInit{
   policyIdToDelete: string = '';
   isCreateMode = true;
   searchText: any;
+  initialFormData: any = {};  // To store initial form data
 
   constructor(fb: FormBuilder, private service: CrudService) {
     this.createForm = fb.group({
@@ -66,6 +67,20 @@ export class CrudComponent implements OnInit{
   clsMdl() {
     this.isModalOpen = false;
     this.createForm.reset();
+  }
+
+  // cnclMdl() {
+  //   this.createForm.reset();
+  // }
+
+  cnclMdl() {
+    if (this.createForm.value.id) {
+      // If form is in update mode, reset to initial data
+      this.createForm.patchValue(this.initialFormData);
+    } else {
+      // If form is in create mode, just reset modal
+      this.createForm.reset();
+    }
   }
 
   generateUniqueId(): string {
@@ -184,6 +199,7 @@ export class CrudComponent implements OnInit{
         Age: data.Age,
         Gender: data.Gender,
       })
+      this.initialFormData = { ...data }; // Save initial data for reset
       this.mdlTitle = 'Updating Policy: ' + data.Number;
       this.crtUpt = 'Update';
       this.isCreateMode = false;
