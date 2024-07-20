@@ -25,10 +25,8 @@
                 <td>{{ plc.Age }}</td>
                 <td>{{ plc.Gender }}</td>
                 <td>
-                    <!-- <button type="button" class="btn btn-danger" (click)="deleteData(plc.id)">Delete</button> -->
                     <button type="button" class="btn tbdDlt" (click)="cnfrmDlt(plc.id, plc.Number)">Delete</button>
                 </td>
-                <!-- <td class="scrlBar"></td> -->
                 <div class="scrlBar"></div>
             </tr>
         </tbody>
@@ -89,7 +87,6 @@
             </div>
             
             <hr>
-            <!-- [disabled]="createForm.invalid && !isUpdateMode" -->
             <button type="submit" class="btn btnCrt" >{{ crtUpt }}</button>
             <button type="button" class="btn btnCncl" (click)="cnclMdl()">Cancel</button>
         </form>

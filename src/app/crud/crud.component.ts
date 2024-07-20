@@ -24,7 +24,7 @@ export class CrudComponent implements OnInit{
   policyIdToDelete: string = '';
   isCreateMode = true;
   searchText: any;
-  initialFormData: any = {};  // To store initial form data
+  initialFormData: any = {}; 
 
   constructor(fb: FormBuilder, private service: CrudService) {
     this.createForm = fb.group({
@@ -75,10 +75,8 @@ export class CrudComponent implements OnInit{
 
   cnclMdl() {
     if (this.createForm.value.id) {
-      // If form is in update mode, reset to initial data
       this.createForm.patchValue(this.initialFormData);
     } else {
-      // If form is in create mode, just reset modal
       this.createForm.reset();
     }
   }
@@ -87,54 +85,11 @@ export class CrudComponent implements OnInit{
     return Date.now().toString(36) + Math.random().toString(36).substring(2, 15);
   }
 
-  // onSubmit() {
-  //   if (this.isCreateMode && this.createForm.invalid) {
-  //     this.markField();
-  //     return;
-  //   }
-
-  //   if (this.isCreateMode) {
-  //     const newPolicy = { ...this.createForm.value, id: this.generateUniqueId() };
-  //     this.service.createData(newPolicy).subscribe(data => {
-  //       this.createForm.reset();
-  //       this.getData();
-  //       console.log(data);
-  //       this.clsMdl();
-  //     });
-  //   } else {
-  //     this.service.updateData(this.createForm.value.id, this.createForm.value).subscribe(data => {
-  //       this.createForm.reset();
-  //       this.getData();
-  //       console.log(data);
-  //       this.clsMdl();
-  //     });
-  //   }
-  // }
-
   onSubmit() {
     if (this.createForm.invalid) {
       this.markField();
       return;
     }
-  
-    const policyNumber: string = this.createForm.value.Number || '';
-  
-    if (!policyNumber) {
-      return;
-    }
-  
-    // Check if the policy number already exists
-    this.service.getPolicyByNumber(policyNumber).subscribe(response => {
-      const currentPolicyId: string = this.createForm.value.id || '';
-  
-      if (response && response.length > 0 && this.isCreateMode) {
-        // If creating a new policy and the policy number exists, show an error
-        this.Number?.setErrors({ shouldBeUnique2: true });
-      } else if (response && response.length > 0 && !this.isCreateMode && response[0].id !== currentPolicyId) {
-        // If updating an existing policy and the policy number exists, and it's not the same policy, show an error
-        this.Number?.setErrors({ shouldBeUnique2: true });
-      } else {
-        // If the policy number is unique or updating the same policy, proceed with submission
         if (this.isCreateMode) {
           const newPolicy = { ...this.createForm.value, id: this.generateUniqueId() };
           this.service.createData(newPolicy).subscribe(data => {
@@ -151,8 +106,6 @@ export class CrudComponent implements OnInit{
             this.clsMdl();
           });
         }
-      }
-    });
   }
   
 
@@ -199,7 +152,7 @@ export class CrudComponent implements OnInit{
         Age: data.Age,
         Gender: data.Gender,
       })
-      this.initialFormData = { ...data }; // Save initial data for reset
+      this.initialFormData = { ...data };
       this.mdlTitle = 'Updating Policy: ' + data.Number;
       this.crtUpt = 'Update';
       this.isCreateMode = false;
